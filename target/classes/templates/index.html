@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>People List</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"/>
+
+    <link rel="stylesheet" th:href="@{/css/styles.css}" href="../static/css/styles.css" />
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a th:href="@{/}" href="index.html">Home</a></li>
+        <li><a th:href="@{/personForm}" href="personForm.html">Add Person</a></li>
+    </ul>
+</nav>
+
+<h1>People List</h1>
+
+<form action="index.html" th:action="@{/}" method="get">
+    <label>
+        <span>Search:</span>
+        <input type="text" name="search" th:value="${search}" />
+    </label>
+    <button>Search</button>
+</form>
+
+<p>Showing <span th:text="${size}">4</span> people. Click on a header to sort.</p>
+<table>
+    <tr>
+        <th>
+            <a href="index.html" title="Sort by first name">First Name</a>
+        </th>
+        <th>
+            <a href="index.html" title="Sort by first name">Last Name</a>
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+    <tr th:each="person: ${people}">
+        <td th:text="${person.getFirstName()}">Harper</td>
+        <td th:text="${person.getLastName()}">Cosmo</td>
+        <td><a href="#" th:href="@{'/personForm?personid=' + ${person.id}}">Edit</a></td>
+    </tr>
+    <tr th:remove="all">
+        <td >Cosmo</td>
+        <td>Harper</td>
+        <td><a href="personForm.html">Edit</a></td>
+    </tr>
+    <tr th:remove="all">
+        <td >Raeburn</td>
+        <td>Dusty</td>
+        <td><a href="personForm.html">Edit</a></td>
+    </tr>
+    <tr th:remove="all">
+        <td >Cash</td>
+        <td>Blaze</td>
+        <td><a href="personForm.html">Edit</a></td>
+    </tr>
+    <tr th:remove="all">
+        <td >Kaiden</td>
+        <td>Dex</td>
+        <td><a href="personForm.html">Edit</a></td>
+    </tr>
+</table>
+
+</body>
+</html>
