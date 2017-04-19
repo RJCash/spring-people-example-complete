@@ -15,7 +15,7 @@ public class PeopleRepository {
     JdbcTemplate template;
 
     public List<Person> listPeople(String name){
-        return template.query("SELECT * FROM person Where lower(firstname) LIKE lower(?) and lower(lastname) LIKE lower(?) order by personid "+"LIMIT 200"
+        return template.query("SELECT * FROM person Where lower(firstname) LIKE lower(?) OR lower(lastname) LIKE lower(?) order by personid "+"LIMIT 200"
                         ,
                 new Object[]{"%"+name+"%", "%"+name+"%"},
                 (ResultSet, row) -> new Person(
